@@ -9,10 +9,6 @@ import serial as ser
 ##        - list view, last coordinate highlighted within several degrees of accuracy. continuous measurement; program stops collection after GPS coordinates have been stable for a certain period of time.
 ##    Accelerometer
 ##        - versus time
-##    Gyroscope
-##        - three-axis orientation output
-##        - https://www.adafruit.com/product/2472
-##        - Absolute Orientation (Euler Vector, 100Hz)
 ##    Altimeter (BMP390L)
 ##    Temperature (IMU)
 ##    Angular velocity (IMU)
