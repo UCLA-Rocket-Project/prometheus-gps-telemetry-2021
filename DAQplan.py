@@ -1,27 +1,29 @@
 import matplotlib.pyplot as plt
 from time import sleep
 import serial
+from serial import Serial
 
+#ser = serial.Serial(port='/dev/cu.usbmodem144301', baudrate=9600)
 
-pressure = [];
-ser = serial.Serial('(WHAT SERIAL PORT):/dev/tty.usbmodem1d11', 9600) # Establish the connection on a specific port
-counter = 32 # Below 32 everything in ASCII is gibberish
-while True:
-     counter +=1
-     currPress = str(chr(counter));
-     pressure += currPress;
-     #ser.write(str(chr(counter))) # Convert the decimal number to ASCII then send it to the Arduino
-     #print(ser.readline()) # Read the newest output from the Arduino
-     sleep(.1) # Delay for one tenth of a second
-     if counter == 255:
-         counter = 32
-  
-#voltage = [0.98, 1.15,1.29, 1.51,1.65,1.79,1.98,2.12,2.28,2.45,2.6,2.76,2.93,3.04,3.22,3.34,3.58,3.73,3.9,4.04,4.2,4.37,4.54,4.7,4.92 ]
+voltage = []
+pressure = []
+i = 0
 
-#pressure = [0,40,80,120,160,200,240,280,320,360,400,440,480,520,560,600,640,680,720,760,800,840,880,920,980]
- 
-plt.plot(voltage, pressure, linewidth = 3,
+#This code goes through 5 iterations, then creates a graph. Takes in random data from a plain arduino uno, just plugged into a computer, and reads lines in. Plots that dummy data on x axis, and 1s on y axis.
+ser = serial.Serial("/dev/cu.usbmodem144301", 9600)
+while (i < 5):
+     cc=str(ser.readline())
+     voltage += [cc[2:][:-5]]
+     pressure += [1]
+     print("I am working")
+     plt.plot(voltage, pressure, linewidth = 3,
          marker='o', markerfacecolor='black', markersize=8)
+     i += 1
+     
+   #  print(cc[2:][:-5])
+
+#plt.plot(voltage, pressure, linewidth = 3,
+        # marker='o', markerfacecolor='black', markersize=8)
   
 # X axis
 plt.xlabel('Voltage')
@@ -33,3 +35,6 @@ plt.title('Voltage v. Pressure test from ARES PT')
   
 plt.show()
 
+# TO DO:
+# What should the terminating condition be for the while loop? How can I get it to update the graph on live feed in front of us?
+# Data backups: how can we save the data in front of us?
