@@ -1,5 +1,5 @@
-# PrometheusGPSTelemetry2021
-Software for GPS/Telemetry for the 2020-2021 season. 
+# Prometheus GPS/Telemetry 2020-2021
+Software for Prometheus' GPS/Telemetry Electronics for the 2020-2021 season. 
 
 Some objectives/the basic plan: 
  
